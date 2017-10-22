@@ -13,8 +13,8 @@ import sys
 import feedparser
 import requests
 
-# Setup the Gmail API - set USE_GMAIL False if you want to use the Simplified Gmail API
-USE_GMAIL = True
+# Setup the Gmail API - set USE_GMAIL True if you want to use the Simplified Gmail API
+USE_GMAIL = False
 
 # Paths for important directories and files - from home directory (Cron Job Optimization)
 HOME_DIR = os.path.expanduser('~')
