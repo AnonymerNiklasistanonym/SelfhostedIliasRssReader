@@ -2,8 +2,6 @@ body {
   font-family: "Open Sans";
   font-weight: 400;
   font-style: normal;
-  /*background: #f0f0f0;*/
-  overflow-wrap: normal;
 }
 h1 {
   margin-bottom: 40px;
@@ -24,7 +22,6 @@ h1 {
 
 .size {
   width: 100%;
-  /*white-space: nowrap;*/
    word-break: break-all;
 }
 
@@ -45,6 +42,6 @@ h1 {
 .entry {
   margin: 10px;
   padding: 20px;
-  background: #f0f0f0; /*white;*/
+  background: #f0f0f0;
   border-radius: 10px;
 }
