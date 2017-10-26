@@ -3,6 +3,7 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
 h1 {
   margin-bottom: 40px;
   margin-left: 20px;
@@ -22,7 +23,7 @@ h1 {
 
 .size {
   width: 100%;
-   word-break: break-all;
+  word-break: break-all;
 }
 
 .link-button {
@@ -47,5 +48,5 @@ h1 {
 }
 
 .hide {
-  display:none;
+  display: none;
 }

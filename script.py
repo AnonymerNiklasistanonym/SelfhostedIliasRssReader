@@ -51,7 +51,7 @@ if os.path.isfile(PATH_OF_CREDENTIALS_FILE):
 
 else:
     # if nothing was found quit the script
-    print("No credentials and url was found")
+    print("ERROR: No credentials and url was found!")
     sys.exit()
 
 # Get current RSS content
@@ -83,20 +83,18 @@ else:
 with open(PATH_OF_DATA_FILE, 'w') as outfile:
     json.dump({"date": PARSED_CONTENT['entries'][0]['published']}, outfile)
 
-print("latest date: " + LATEST_DATE)
-
 WALKING_RSS_STRING = ""
 WALKING_RSS_STRING_TITLES = ""
-
 COUNT = 0
 
 # Read all entries and convert them to html
 for entry in PARSED_CONTENT['entries']:
 
-    print("current date: " + entry['published'])
+    # check if the current entry is the one that was read in the execution before
     if LATEST_DATE == entry['published']:
         print("Newest entry detected!!!")
         break
+
     WALKING_RSS_STRING_TITLES += entry['title'] + ", "
     WALKING_RSS_STRING += '<div class="entry"><div class="size"><p class="title">' + \
         entry['title'] + '</p><p class="date">' + \
@@ -109,8 +107,10 @@ for entry in PARSED_CONTENT['entries']:
 
     COUNT += 1
 
-#HEAD_RSS_STRING = "<h1>New Ilias RSS Entries(" + str(COUNT) + "):</h1>"
-WALKING_RSS_STRING = '<p class="hide">' + WALKING_RSS_STRING_TITLES[:-2] + '</p>' + WALKING_RSS_STRING
+# if more than one new entry was found add a list of the entry topics
+if COUNT > 1:
+    WALKING_RSS_STRING = '<p class="hide">Topics: ' + \
+        WALKING_RSS_STRING_TITLES[:-2] + ' >> </p>' + WALKING_RSS_STRING
 
 print(WALKING_RSS_STRING)
 
