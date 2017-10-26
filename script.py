@@ -86,6 +86,7 @@ with open(PATH_OF_DATA_FILE, 'w') as outfile:
 print("latest date: " + LATEST_DATE)
 
 WALKING_RSS_STRING = ""
+WALKING_RSS_STRING_TITLES = ""
 
 COUNT = 0
 
@@ -96,6 +97,7 @@ for entry in PARSED_CONTENT['entries']:
     if LATEST_DATE == entry['published']:
         print("Newest entry detected!!!")
         break
+    WALKING_RSS_STRING_TITLES += entry['title'] + ", "
     WALKING_RSS_STRING += '<div class="entry"><div class="size"><p class="title">' + \
         entry['title'] + '</p><p class="date">' + \
         entry['published'][:-6] + "</p></div>"
@@ -105,10 +107,10 @@ for entry in PARSED_CONTENT['entries']:
         entry['link'] + \
         '"><button class="link-button">Link to content</button></a></div>'
 
-    COUNT+=1
+    COUNT += 1
 
 #HEAD_RSS_STRING = "<h1>New Ilias RSS Entries(" + str(COUNT) + "):</h1>"
-#WALKING_RSS_STRING = WALKING_RSS_STRING
+WALKING_RSS_STRING = '<p class="hide">' + WALKING_RSS_STRING_TITLES[:-2] + '</p>' + WALKING_RSS_STRING
 
 print(WALKING_RSS_STRING)
 
