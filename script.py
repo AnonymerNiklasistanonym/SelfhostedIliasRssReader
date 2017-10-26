@@ -13,6 +13,7 @@ import sys
 import feedparser
 import requests
 
+
 # Setup the Gmail API - set USE_GMAIL True if you want to use the Simplified Gmail API
 USE_GMAIL = False
 
@@ -84,7 +85,9 @@ with open(PATH_OF_DATA_FILE, 'w') as outfile:
 
 print("latest date: " + LATEST_DATE)
 
-WALKING_RSS_STRING = "<h1>New Ilias RSS Entries:</h1>"
+WALKING_RSS_STRING = ""
+
+COUNT = 0
 
 # Read all entries and convert them to html
 for entry in PARSED_CONTENT['entries']:
@@ -101,6 +104,11 @@ for entry in PARSED_CONTENT['entries']:
     WALKING_RSS_STRING += '<a href="' + \
         entry['link'] + \
         '"><button class="link-button">Link to content</button></a></div>'
+
+    COUNT+=1
+
+#HEAD_RSS_STRING = "<h1>New Ilias RSS Entries(" + str(COUNT) + "):</h1>"
+#WALKING_RSS_STRING = WALKING_RSS_STRING
 
 print(WALKING_RSS_STRING)
 
@@ -134,4 +142,4 @@ if USE_GMAIL:
 
     for recipient in RECIPIENTS:
         GMAIL_SERVER.send_html(
-            recipient, "Ilias RSS Update", EMAIL_TEXT)
+            recipient, "Ilias RSS Update (" + str(COUNT) + ")", EMAIL_TEXT)
